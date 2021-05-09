@@ -65,7 +65,7 @@ void fulladder(double** ins, double** outs, size_t samples) {
     bool c_in;
     bool sum;
     bool c_out;
-    for (int i = 0; i < samples, i++) {
+    for (int i = 0; i < samples; i++) {
         in0 = ins[0][i] > 0;
         in1 = ins[1][i] > 0;
         c_in = ins[2][i] > 0;
@@ -76,7 +76,7 @@ void fulladder(double** ins, double** outs, size_t samples) {
     }
 }
 
-FullAdded fulladder_samplewise(bool in0, bool in1, bool c_in) {
+FullAdder fulladder_samplewise(bool in0, bool in1, bool c_in) {
     FullAdder fa;
     fa.sum = (in0 ^ in1) ^ c_in;
     fa.c_out = (in0 & in1) | ((in0 ^ in1) & c_in);

@@ -9,6 +9,8 @@
 #ifndef DSM
 #define DSM
 
+typedef struct FullAdder FullAdder;
+
 void dsm1(double* in, double* out, size_t samples);
 void dsm2(double* in, double* out, size_t samples);
 void dsm3(double* in, double* out, size_t samples);
