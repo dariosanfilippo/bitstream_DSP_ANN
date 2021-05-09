@@ -1,6 +1,6 @@
 #include "osc.h"
 
-void sine(int sr, double amp, double freq, double* out, size_t samples) {
+void sine(size_t sr, double amp, double freq, double* out, size_t samples) {
     /* calculate incremental value */
     double incr = (TWOPI * freq) / (double)sr;
     double ph = 0.0;
