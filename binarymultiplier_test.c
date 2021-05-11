@@ -19,7 +19,6 @@ int main(void) {
 
     sig_alloc(in, 2, len);
     sig_alloc(out, 1, len);
-    sig_setconst(in, 0, .5);
     sine(SR, .25, 5000.0, in->vec_space[0], in->vec_len);
     sine(SR, .25, 1000.0, in->vec_space[1], in->vec_len);
     dsm3(in->vec_space[0], in->vec_space[0], in->vec_len);
