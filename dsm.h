@@ -11,12 +11,12 @@
 
 typedef struct FullAdder FullAdder;
 
-void dsm1(double* in, double* out, size_t samples);
-void dsm2(double* in, double* out, size_t samples);
-void dsm3(double* in, double* out, size_t samples);
-void fulladder(double** in, double** out, size_t samples);
+void dsm1(Sig* in, Sig* out);
+void dsm2(Sig* in, Sig* out);
+void dsm3(Sig* in, Sig* out);
+void fulladder(Sig* threeins, Sig* twoouts);
 FullAdder fulladder_samplewise(bool in0, bool in1, bool c_in);
-void binaryadder(double** in, double* out, size_t samples);
+void binaryadder(Sig* twoins, Sig* out);
 bool binaryadder_samplewise(bool in0, bool in1, bool* state);
 void binarymultiplier(Sig* in, Sig* out);
 
