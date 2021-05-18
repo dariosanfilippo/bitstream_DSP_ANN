@@ -4,6 +4,7 @@ struct Sig {
     double** vec_space;
     size_t space_dim;
     size_t vec_len;
+    size_t sr;
 };
 
 void sig_alloc(Sig* sig, size_t dim, size_t len) {

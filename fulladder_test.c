@@ -2,9 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <assert.h>
+#include "auxiliary.c"
+#include "signals.c"
 #include "osc.c"
 #include "dsm.c"
-#include "auxiliary.c"
 
 int main() {
 
