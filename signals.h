@@ -1,6 +1,8 @@
 #ifndef SIGNALS
 #define SIGNALS
 
+#define audio 32
+
 #if audio == 32
 # define audio float
 #elif audio == 64
