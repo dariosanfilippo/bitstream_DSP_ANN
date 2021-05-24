@@ -1,14 +1,14 @@
 #ifndef SIGNALS
 #define SIGNALS
 
-#define audio 32
+#define RESO 32
 
-#if audio == 32
+#if RESO == 32
 # define audio float
-#elif audio == 64
+#elif RESO == 64
 # define audio double
 #else
-#error invalid audio size: it must be 32 or 64 bits
+#error invalid resolution: it must be 32 or 64 bits.
 #endif
 
 typedef struct Sig Sig;
