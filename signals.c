@@ -13,10 +13,11 @@ struct Sig {
     audio** vec_space;
     size_t space_dim;
     size_t vec_len;
+    size_t sr;
 };
 
 /* Allocate a space of "dim" vectors of size "len" samples initialised to 0 */
-void sig_alloc(Sig* sig, size_t dim, size_t len) {
+void sig_alloc(Sig* sig, size_t dim, size_t len, size_t srate) {
     sig->vec_space = malloc(dim * sizeof(audio*));
     for (size_t i = 0; i < dim; i++) {
         sig->vec_space[i] = malloc(len * sizeof(audio));
@@ -26,6 +27,7 @@ void sig_alloc(Sig* sig, size_t dim, size_t len) {
     }
     sig->space_dim = dim;
     sig->vec_len = len;
+    sig->sr = srate;
 }
 
 /* Free signals memory after use */

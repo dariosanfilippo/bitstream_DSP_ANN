@@ -93,8 +93,8 @@ void binarymultiplier(Sig* in0, Sig* in1, Sig* out, size_t in_vec_id0,
     
     Sig* xor = malloc(sizeof(Sig));
     Sig* sum = malloc(sizeof(Sig));
-    sig_alloc(xor, 16, in0->vec_len);
-    sig_alloc(sum, 14, in0->vec_len);
+    sig_alloc(xor, 16, in0->vec_len, in0->sr);
+    sig_alloc(sum, 14, in0->vec_len, in0->sr);
     bool temp;
     
     /* the loops below compute the vectors corresponding to the

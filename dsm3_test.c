@@ -20,8 +20,8 @@ int main(void) {
 
     Sig* in = malloc(sizeof(Sig));
     Sig* out = malloc(sizeof(Sig));
-    sig_alloc(in, 1, len);
-    sig_alloc(out, 1, len);
+    sig_alloc(in, 1, len, SR);
+    sig_alloc(out, 1, len, SR);
 
     sine(SR, amp, freq, phase, in, 0);
     dsm3(in, out, 0, 0);

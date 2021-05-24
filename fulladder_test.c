@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
+#include <string.h>
 #include <stdbool.h>
 #include <assert.h>
 #include "signals.c"
@@ -13,6 +15,7 @@ int main(void) {
     fptr = fopen("fa.csv", "w+");
 
     size_t len = 8;
+    size_t SR = 192000;
 
     audio fa_ins[3][8] = {
         {0, 0, 0, 0, 1, 1, 1, 1},
@@ -22,8 +25,8 @@ int main(void) {
 
     Sig* in = malloc(sizeof(Sig));
     Sig* out = malloc(sizeof(Sig));
-    sig_alloc(in, 3, len);
-    sig_alloc(out, 2, len);
+    sig_alloc(in, 3, len, SR);
+    sig_alloc(out, 2, len, SR);
 
     for (size_t i = 0; i < 3; i++) {
         for (size_t j = 0; j < in->vec_len; j++) {

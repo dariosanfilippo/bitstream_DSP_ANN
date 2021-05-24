@@ -13,7 +13,7 @@
 
 typedef struct Sig Sig;
 
-void sig_alloc(Sig* sig, size_t dim, size_t len);
+void sig_alloc(Sig* sig, size_t dim, size_t len, size_t srate);
 void sig_free(Sig* sig);
 void sig_setconst(Sig* sig, size_t vec_id, audio val);
 void sig_print(Sig* sig, size_t vec_id);

@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
+#include <string.h>
 #include <stdbool.h>
 #include <assert.h>
 #include "signals.c"
@@ -18,8 +20,8 @@ int main(void) {
     Sig* in = malloc(sizeof(Sig));
     Sig* out = malloc(sizeof(Sig));
 
-    sig_alloc(in, 2, len);
-    sig_alloc(out, 1, len);
+    sig_alloc(in, 2, len, SR);
+    sig_alloc(out, 1, len, SR);
     sine(SR, .25, 5000.0, .0, in, 0);
     sine(SR, .25, 1000.0, .0, in, 1);
     for (size_t i = 0; i < in->vec_len; i++) {

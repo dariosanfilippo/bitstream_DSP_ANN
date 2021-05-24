@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
@@ -22,8 +23,8 @@ int main(void) {
 
     Sig* in = malloc(sizeof(Sig));
     Sig* out = malloc(sizeof(Sig));
-    sig_alloc(in, 2, len);
-    sig_alloc(out, 1, len);
+    sig_alloc(in, 2, len, SR);
+    sig_alloc(out, 1, len, SR);
     sine(SR, amp, freq0, phase, in, 0);
     sine(SR, amp, freq1, phase, in, 1);
     dsm3(in, in, 0, 0);
