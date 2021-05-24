@@ -24,8 +24,7 @@ int main(void) {
 
     freq_est_data(in, out);
 
-    sig_print(in, 30);
-    sig_print(out, 30);
+    sig_print_space(in);
 
     sig_free(in);
     sig_free(out);
