@@ -40,6 +40,9 @@ int main(void) {
     sig_print_space(in);
     sig_print_space(out);
 
+    sig_free(in);
+    sig_free(out);
+
     return EXIT_SUCCESS;
 
 }
