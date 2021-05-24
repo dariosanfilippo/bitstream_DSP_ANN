@@ -5,6 +5,7 @@
 #include "signals.c"
 #include "osc.c"
 #include "dsm.c"
+#include "bitmath.c"
 
 int main(void) {
 
@@ -19,12 +20,12 @@ int main(void) {
 
     sig_alloc(in, 2, len);
     sig_alloc(out, 1, len);
-    sine(SR, .25, 5000.0, in->vec_space[0], in->vec_len);
-    sine(SR, .25, 1000.0, in->vec_space[1], in->vec_len);
+    sine(SR, .25, 5000.0, .0, in, 0);
+    sine(SR, .25, 1000.0, .0, in, 1);
     for (size_t i = 0; i < in->vec_len; i++) {
         out->vec_space[0][i] = in->vec_space[0][i] * in->vec_space[1][i];
     }
-    dsm3(out->vec_space[0], out->vec_space[0], in->vec_len);
+    dsm3(out, out, 0, 0);
     for (size_t i = 0; i < in->vec_len; i++) {
         fprintf(fptr, "%f\n", out->vec_space[0][i]);
     }

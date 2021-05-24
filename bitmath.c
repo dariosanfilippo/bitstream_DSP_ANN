@@ -8,13 +8,16 @@ struct FullAdder {
 void fulladder(Sig* in0, Sig* in1, Sig* in2, Sig* out0, Sig* out1,
     size_t in_vec_id0, size_t in_vec_id1, size_t in_vec_id2, size_t out_vec_id0,
         size_t out_vec_id1) {
+    
     assert((in0->vec_len == in1->vec_len) & (in1->vec_len == in2->vec_len) &
         (in2->vec_len == out0->vec_len) & (out0->vec_len == out1->vec_len));
+    
     bool _in0;
     bool _in1;
     bool c_in;
     bool sum;
     bool c_out;
+    
     for (size_t i = 0; i < in0->vec_len; i++) {
         _in0 = in0->vec_space[in_vec_id0][i] > 0;
         _in1 = in1->vec_space[in_vec_id1][i] > 0;
@@ -27,6 +30,7 @@ void fulladder(Sig* in0, Sig* in1, Sig* in2, Sig* out0, Sig* out1,
 }
 
 FullAdder fulladder_samplewise(bool in0, bool in1, bool c_in) {
+    
     FullAdder fa;
     fa.sum = (in0 ^ in1) ^ c_in;
     fa.c_out = (in0 & in1) | ((in0 ^ in1) & c_in);
@@ -35,13 +39,16 @@ FullAdder fulladder_samplewise(bool in0, bool in1, bool c_in) {
 
 void binaryadder(Sig* in0, Sig* in1, Sig* out, size_t in_vec_id0, size_t in_vec_id1,
     size_t out_vec_id) {
+    
     assert((in0->vec_len == in1->vec_len) & (in1->vec_len == out->vec_len));
+    
     bool state = 0;
     bool _in0;
     bool _in1;
     bool c_in;
     bool sum;
     bool c_out;
+    
     for (size_t i = 0; i < in0->vec_len; i++) {
         _in0 = in0->vec_space[in_vec_id0][i] > 0;
         _in1 = in1->vec_space[in_vec_id1][i] > 0;
@@ -54,6 +61,7 @@ void binaryadder(Sig* in0, Sig* in1, Sig* out, size_t in_vec_id0, size_t in_vec_
 }
 
 bool binaryadder_samplewise(bool in0, bool in1, bool* state) {
+    
     FullAdder fa = fulladder_samplewise(in0, in1, *state);
     *state = fa.sum;
     return fa.c_out;
@@ -61,12 +69,15 @@ bool binaryadder_samplewise(bool in0, bool in1, bool* state) {
 
 void binarymultiplier(Sig* in0, Sig* in1, Sig* out, size_t in_vec_id0,
     size_t in_vec_id1, size_t out_vec_id) {
+    
     assert((in0->vec_len == in1->vec_len) & (in1->vec_len == out->vec_len));
+    
     Sig* xor = malloc(sizeof(Sig));
     Sig* sum = malloc(sizeof(Sig));
     sig_alloc(xor, 16, in0->vec_len);
     sig_alloc(sum, 14, in0->vec_len);
     bool temp;
+    
     /* the loops below compute the vectors corresponding to the
      * 16 outputs of the xor operators */
     for (size_t i = 0; i < 4; i++) {
@@ -78,6 +89,7 @@ void binarymultiplier(Sig* in0, Sig* in1, Sig* out, size_t in_vec_id0,
             }
         }
     }
+    /* the loops below sum all of the signals for the final output */
     for (size_t i = 0; i < 8; i++) {
         binaryadder(xor, xor, sum, i * 2, i * 2 + 1, i);
     }
@@ -88,5 +100,8 @@ void binarymultiplier(Sig* in0, Sig* in1, Sig* out, size_t in_vec_id0,
         binaryadder(sum, sum, sum, i * 2 + 8, i * 2 + 8 + 1, i + 12);
     }
     binaryadder(sum, sum, out, 12, 13, out_vec_id);
+
+    sig_free(xor);
+    sig_free(sum);
 }
 

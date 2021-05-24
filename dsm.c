@@ -19,29 +19,39 @@
 #include "dsm.h"
 
 void dsm1(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
+    
     assert(in->vec_len == out->vec_len);
+    
     double state = 0.0;
     double integrator = 0.0;
+    
     for (size_t i = 0; i < in->vec_len; i++) {
         integrator += in->vec_space[in_vec_id][i] - state;
         out->vec_space[out_vec_id][i] = state = integrator < 0.0 ? -1.0 : 1.0;
     }
+
 }
 
 void dsm2(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
+    
     assert(in->vec_len == out->vec_len);
+    
     double state = 0.0;
     double integrator1 = 0.0;
     double integrator2 = 0.0;
+    
     for (size_t i = 0; i < in->vec_len; i++) {
         integrator1 += in->vec_space[in_vec_id][i] - state;
         integrator2 += integrator1 - state * 2.0;
         out->vec_space[out_vec_id][i] = state = integrator2 < 0.0 ? -1.0 : 1.0;
     }
+
 }
 
 void dsm3(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
+    
     assert(in->vec_len == out->vec_len);
+    
     double state = 0.0;
     double integrator1 = 0.0;
     double integrator2 = 0.0;
@@ -49,16 +59,12 @@ void dsm3(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
     double c1 = 1.0 / 4.0;
     double c2 = 1.0 / 3.0;
     double c3 = 1.0 / 8.0;
+    
     for (size_t i = 0; i < in->vec_len; i++) {
         integrator1 += in->vec_space[in_vec_id][i] * c1 - state * c1;
         integrator2 += integrator1 * c2 - state * c2;
         integrator3 += integrator2 * c3 - state * c3;
         out->vec_space[out_vec_id][i] = state = integrator3 < 0.0 ? -1.0 : 1.0;
     }
-}
 
-bool binaryadder_samplewise(bool in0, bool in1, bool* state) {
-    FullAdder fa = fulladder_samplewise(in0, in1, *state);
-    *state = fa.sum;
-    return fa.c_out;
 }

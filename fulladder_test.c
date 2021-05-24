@@ -31,7 +31,7 @@ int main(void) {
         }
     }
 
-    fulladder(in, out, 0, 1, 2, 0, 1);
+    fulladder(in, in, in, out, out, 0, 1, 2, 0, 1);
 
     for (int i = 0; i < in->vec_len; i++) {
         fprintf(fptr, "%f, %f\n", out->vec_space[0][i], out->vec_space[1][i]);
