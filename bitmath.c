@@ -3,14 +3,8 @@
  *      This module contains delta-sigma arithmetic operators.
  *
  *      Reference:
- *          @article{ng2009bit,
- *              title={Bit-stream signal processing on FPGA},
- *              author={Ng, Chiu-wa},
- *              journal={香港大學學位論文},
- *              pages={1--0},
- *              year={2009},
- *              publisher={香港大學}
- *          }
+ *          Chiu-wa Ng (2009) -- Bit-stream signal processing on FPGA.
+ *          http://hub.hku.hk/handle/10722/54513
  *
  * Copyright (c) Dario Sanfilippo 2021.
  *
@@ -86,7 +80,8 @@ bool binaryadder_samplewise(bool in0, bool in1, bool* state) {
     return fa.c_out;
 }
 
-/* Delta-sigma multiplication */
+/* Delta-sigma multiplication; this implements figure 2.5 of the thesis 
+ * referenced above */
 void binarymultiplier(Sig* in0, Sig* in1, Sig* out, size_t in_vec_id0,
     size_t in_vec_id1, size_t out_vec_id) {
     assert((in0->vec_len == in1->vec_len) & (in1->vec_len == out->vec_len));

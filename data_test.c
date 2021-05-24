@@ -44,7 +44,6 @@ int main(void) {
     sig_free(out);
 
     return EXIT_SUCCESS;
-
 }
 
 
