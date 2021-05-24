@@ -5,8 +5,9 @@
 #include "signals.c"
 #include "osc.c"
 #include "dsm.c"
+#include "bitmath.c"
 
-int main() {
+int main(void) {
 
     FILE *fptr;
     fptr = fopen("fa.csv", "w+");

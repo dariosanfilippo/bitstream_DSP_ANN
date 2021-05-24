@@ -6,6 +6,7 @@
 #include "signals.c"
 #include "osc.c"
 #include "dsm.c"
+#include "bitmath.c"
 
 int main(void) {
 
