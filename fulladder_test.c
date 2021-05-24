@@ -45,4 +45,5 @@ int main(void) {
     fclose(fptr);
 
     return EXIT_SUCCESS;
+
 }
