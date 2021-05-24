@@ -39,6 +39,7 @@ int main(void) {
 
     sig_free(in);
     sig_free(out);
+    fclose(fptr);
 
     return EXIT_SUCCESS;
 }

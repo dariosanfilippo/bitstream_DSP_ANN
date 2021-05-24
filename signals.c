@@ -1,12 +1,21 @@
+/*******************************************************************************
+ *
+ *      This module implements an infrastructure to operate with signals
+ *      based on a vector space representation.
+ *
+ * Copyright (c) Dario Sanfilippo 2021.
+ *
+ ******************************************************************************/
+
 #include "signals.h"
 
 struct Sig {
     double** vec_space;
     size_t space_dim;
     size_t vec_len;
-    size_t sr;
 };
 
+/* Allocate a space of "dim" vectors of size "len" samples initialised to 0 */
 void sig_alloc(Sig* sig, size_t dim, size_t len) {
     sig->vec_space = malloc(dim * sizeof(double*));
     for (size_t i = 0; i < dim; i++) {
@@ -19,6 +28,7 @@ void sig_alloc(Sig* sig, size_t dim, size_t len) {
     sig->vec_len = len;
 }
 
+/* Free signals memory after use */
 void sig_free(Sig* sig) {
     for (size_t i = 0; i < sig->space_dim; i++) {
         free(sig->vec_space[i]);
@@ -26,6 +36,7 @@ void sig_free(Sig* sig) {
     free(sig->vec_space);
 }
 
+/* Set a specific vector to a constant value */
 void sig_setconst(Sig* sig, size_t vec_id, double val) {
     assert(vec_id < sig->space_dim);
     for (size_t i = 0; i < sig->vec_len; i++) {
@@ -33,6 +44,7 @@ void sig_setconst(Sig* sig, size_t vec_id, double val) {
     }
 }
 
+/* Print a specific vector on screen */
 void sig_print(Sig* sig, size_t vec_id) {
     assert(vec_id < sig->space_dim);
     for (size_t i = 0; i < sig->vec_len; i++) {
@@ -40,10 +52,12 @@ void sig_print(Sig* sig, size_t vec_id) {
     }
 }
 
+/* Get the dimension of a space */
 size_t sig_getdim(Sig* sig) {
     return sig->space_dim;
 }
 
+/* Get the length of the vectors in a space */
 size_t sig_getlen(Sig* sig) {
     return sig->vec_len;
 }

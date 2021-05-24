@@ -18,8 +18,8 @@
 
 #include "dsm.h"
 
+/* First-order DSM */
 void dsm1(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
-    
     assert(in->vec_len == out->vec_len);
     
     double state = 0.0;
@@ -29,11 +29,10 @@ void dsm1(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
         integrator += in->vec_space[in_vec_id][i] - state;
         out->vec_space[out_vec_id][i] = state = integrator < 0.0 ? -1.0 : 1.0;
     }
-
 }
 
+/* Second-order DSM */
 void dsm2(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
-    
     assert(in->vec_len == out->vec_len);
     
     double state = 0.0;
@@ -45,11 +44,10 @@ void dsm2(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
         integrator2 += integrator1 - state * 2.0;
         out->vec_space[out_vec_id][i] = state = integrator2 < 0.0 ? -1.0 : 1.0;
     }
-
 }
 
+/* Third-order DSM */
 void dsm3(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
-    
     assert(in->vec_len == out->vec_len);
     
     double state = 0.0;
@@ -66,5 +64,4 @@ void dsm3(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
         integrator3 += integrator2 * c3 - state * c3;
         out->vec_space[out_vec_id][i] = state = integrator3 < 0.0 ? -1.0 : 1.0;
     }
-
 }

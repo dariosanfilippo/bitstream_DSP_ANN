@@ -1,3 +1,21 @@
+/*******************************************************************************
+ *
+ *      This module contains delta-sigma arithmetic operators.
+ *
+ *      Reference:
+ *          @article{ng2009bit,
+ *              title={Bit-stream signal processing on FPGA},
+ *              author={Ng, Chiu-wa},
+ *              journal={香港大學學位論文},
+ *              pages={1--0},
+ *              year={2009},
+ *              publisher={香港大學}
+ *          }
+ *
+ * Copyright (c) Dario Sanfilippo 2021.
+ *
+*******************************************************************************/
+
 #include "bitmath.h"
 
 struct FullAdder {
@@ -5,10 +23,11 @@ struct FullAdder {
     bool c_out;
 };
 
+/* Full adder; see https://en.wikipedia.org/wiki/Adder_(electronics) for the 
+ * truth table */
 void fulladder(Sig* in0, Sig* in1, Sig* in2, Sig* out0, Sig* out1,
     size_t in_vec_id0, size_t in_vec_id1, size_t in_vec_id2, size_t out_vec_id0,
         size_t out_vec_id1) {
-    
     assert((in0->vec_len == in1->vec_len) & (in1->vec_len == in2->vec_len) &
         (in2->vec_len == out0->vec_len) & (out0->vec_len == out1->vec_len));
     
@@ -29,17 +48,17 @@ void fulladder(Sig* in0, Sig* in1, Sig* in2, Sig* out0, Sig* out1,
     }
 }
 
+/* Full adder for sample-by-sample calculations */
 FullAdder fulladder_samplewise(bool in0, bool in1, bool c_in) {
-    
     FullAdder fa;
     fa.sum = (in0 ^ in1) ^ c_in;
     fa.c_out = (in0 & in1) | ((in0 ^ in1) & c_in);
     return fa;
 }
 
+/* Delta-sigma streams adder */
 void binaryadder(Sig* in0, Sig* in1, Sig* out, size_t in_vec_id0, size_t in_vec_id1,
     size_t out_vec_id) {
-    
     assert((in0->vec_len == in1->vec_len) & (in1->vec_len == out->vec_len));
     
     bool state = 0;
@@ -60,16 +79,16 @@ void binaryadder(Sig* in0, Sig* in1, Sig* out, size_t in_vec_id0, size_t in_vec_
     }
 }
 
+/* As above but sample-wise */
 bool binaryadder_samplewise(bool in0, bool in1, bool* state) {
-    
     FullAdder fa = fulladder_samplewise(in0, in1, *state);
     *state = fa.sum;
     return fa.c_out;
 }
 
+/* Delta-sigma multiplication */
 void binarymultiplier(Sig* in0, Sig* in1, Sig* out, size_t in_vec_id0,
     size_t in_vec_id1, size_t out_vec_id) {
-    
     assert((in0->vec_len == in1->vec_len) & (in1->vec_len == out->vec_len));
     
     Sig* xor = malloc(sizeof(Sig));
