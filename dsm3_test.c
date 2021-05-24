@@ -9,7 +9,7 @@
 int main(void) {
 
     FILE *fptr;
-    fptr = fopen("dsm2.csv", "w+");
+    fptr = fopen("dsm3.csv", "w+");
 
     size_t SR = 3072000; /* 192000 * 16 */
     size_t len = 65536;
@@ -23,7 +23,7 @@ int main(void) {
     sig_alloc(out, 1, len);
 
     sine(SR, amp, freq, phase, in, 0);
-    dsm2(in, out, 0, 0);
+    dsm3(in, out, 0, 0);
     
     for (size_t i = 0; i < in->vec_len; i++) {
         fprintf(fptr, "%f\n", out->vec_space[0][i]);

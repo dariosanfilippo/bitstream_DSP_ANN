@@ -13,6 +13,7 @@
 
 #define TWOPI 2.0 * M_PI
 
-void sine(size_t sr, double amp, double freq, double* out, size_t samples);
+void sine(size_t sr, double amp, double freq, double phase, Sig* out, 
+    size_t out_vec_id);
 
 #endif
