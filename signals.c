@@ -10,16 +10,16 @@
 #include "signals.h"
 
 struct Sig {
-    double** vec_space;
+    audio** vec_space;
     size_t space_dim;
     size_t vec_len;
 };
 
 /* Allocate a space of "dim" vectors of size "len" samples initialised to 0 */
 void sig_alloc(Sig* sig, size_t dim, size_t len) {
-    sig->vec_space = malloc(dim * sizeof(double*));
+    sig->vec_space = malloc(dim * sizeof(audio*));
     for (size_t i = 0; i < dim; i++) {
-        sig->vec_space[i] = malloc(len * sizeof(double));
+        sig->vec_space[i] = malloc(len * sizeof(audio));
         for (size_t j = 0; j < len; j++) {
             sig->vec_space[i][j] = 0.0;
         }
@@ -37,7 +37,7 @@ void sig_free(Sig* sig) {
 }
 
 /* Set a specific vector to a constant value */
-void sig_setconst(Sig* sig, size_t vec_id, double val) {
+void sig_setconst(Sig* sig, size_t vec_id, audio val) {
     assert(vec_id < sig->space_dim);
     for (size_t i = 0; i < sig->vec_len; i++) {
         sig->vec_space[vec_id][i] = val;

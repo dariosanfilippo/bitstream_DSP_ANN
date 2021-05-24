@@ -15,10 +15,10 @@ int main(void) {
 
     size_t SR = 3072000; /* 192000 * 16 */
     size_t len = 65536;
-    double amp = .25;
-    double freq0 = 1000.0;
-    double freq1 = 3000.0;
-    double phase = .0;
+    audio amp = .25;
+    audio freq0 = 1000.0;
+    audio freq1 = 3000.0;
+    audio phase = .0;
 
     Sig* in = malloc(sizeof(Sig));
     Sig* out = malloc(sizeof(Sig));
