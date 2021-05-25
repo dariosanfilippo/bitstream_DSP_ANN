@@ -18,7 +18,7 @@ int main(void) {
     kann_t* ann;
     size_t inputs = 1024;
     size_t outputs = 1;
-    size_t num_layers = 2;
+    size_t num_layers = 4;
     size_t neurons = 16;
     size_t SR = 192000;
 
@@ -62,7 +62,6 @@ int main(void) {
         printf("Target: %.10f; prediction: %.10f; error factor: %.10f\n", 
             y->vec_space[j][0], *output, y->vec_space[j][0] / *output);
     }
-
     sig_free(x);
     sig_free(y);
 
