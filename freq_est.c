@@ -16,10 +16,10 @@ int main(void) {
 
     kad_node_t* t;
     kann_t* ann;
-    size_t inputs = 1024;
+    size_t inputs = 4096;
     size_t outputs = 1;
     size_t num_layers = 1;
-    size_t neurons = 64;
+    size_t neurons = 16;
     size_t SR = 192000;
 
     /* Create the neural network */
@@ -62,4 +62,9 @@ int main(void) {
         printf("target: %.10f, ANN: %.10f, err: %.10f\n", 
             y->vec_space[j][0], *output, y->vec_space[j][0] / *output);
     }
+
+    sig_free(x);
+    sig_free(y);
+
+    return EXIT_SUCCESS;
 }
