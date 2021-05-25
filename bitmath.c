@@ -37,8 +37,8 @@ void fulladder(Sig* in0, Sig* in1, Sig* in2, Sig* out0, Sig* out1,
         c_in = in2->vec_space[in_vec_id2][i] > 0;
         sum = (_in0 ^ _in1) ^ c_in;
         c_out = (_in0 & _in1) | ((_in0 ^ _in1) & c_in);
-        out0->vec_space[out_vec_id0][i] = (double) sum == 0 ? -1.0 : 1.0;
-        out1->vec_space[out_vec_id1][i] = (double) c_out == 0 ? -1.0 : 1.0;
+        out0->vec_space[out_vec_id0][i] = (audio) sum == 0 ? -1.0 : 1.0;
+        out1->vec_space[out_vec_id1][i] = (audio) c_out == 0 ? -1.0 : 1.0;
     }
 }
 
@@ -69,7 +69,7 @@ void binaryadder(Sig* in0, Sig* in1, Sig* out, size_t in_vec_id0, size_t in_vec_
         sum = (_in0 ^ _in1) ^ c_in;
         c_out = (_in0 & _in1) | ((_in0 ^ _in1) & c_in);
         state = sum;
-        out->vec_space[out_vec_id][i] = (double) c_out == 0 ? -1.0 : 1.0;
+        out->vec_space[out_vec_id][i] = (audio) c_out == 0 ? -1.0 : 1.0;
     }
 }
 
