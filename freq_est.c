@@ -18,7 +18,7 @@ int main(void) {
     kann_t* ann;
     size_t inputs = 1024;
     size_t outputs = 1;
-    size_t num_layers = 4;
+    size_t num_layers = 2;
     size_t neurons = 16;
     size_t SR = 192000;
 
@@ -49,6 +49,13 @@ int main(void) {
     sig_free(x);
     sig_free(y);
 
+    /* CSV file setup */
+    char fname[256];
+    sprintf(fname, "inputs%zuoutputs%zulayers%zuneurons%zuset%zulearningrate%f.csv", 
+        inputs, outputs, num_layers, neurons, setsize, lr);
+    FILE* csv;
+    csv = fopen(fname, "w+");
+
     /* Test the net */
     size_t testsize = 20;
     x = malloc(sizeof(Sig));
@@ -61,9 +68,11 @@ int main(void) {
         output = kann_apply1(ann, x->vec_space[j]);
         printf("Target: %.10f; prediction: %.10f; error factor: %.10f\n", 
             y->vec_space[j][0], *output, y->vec_space[j][0] / *output);
+        fprintf(csv, "%f, %f\n", *output, y->vec_space[j][0] / *output);
     }
     sig_free(x);
     sig_free(y);
+    fclose(csv);
 
     return EXIT_SUCCESS;
 }
