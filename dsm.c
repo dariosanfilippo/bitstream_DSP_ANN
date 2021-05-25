@@ -22,8 +22,8 @@
 void dsm1(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
     assert(in->vec_len == out->vec_len);
     
-    double state = 0.0;
-    double integrator = 0.0;
+    audio state = 0.0;
+    audio integrator = 0.0;
     
     for (size_t i = 0; i < in->vec_len; i++) {
         integrator += in->vec_space[in_vec_id][i] - state;
@@ -35,9 +35,9 @@ void dsm1(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
 void dsm2(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
     assert(in->vec_len == out->vec_len);
     
-    double state = 0.0;
-    double integrator1 = 0.0;
-    double integrator2 = 0.0;
+    audio state = 0.0;
+    audio integrator1 = 0.0;
+    audio integrator2 = 0.0;
     
     for (size_t i = 0; i < in->vec_len; i++) {
         integrator1 += in->vec_space[in_vec_id][i] - state;
@@ -50,13 +50,13 @@ void dsm2(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
 void dsm3(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
     assert(in->vec_len == out->vec_len);
     
-    double state = 0.0;
-    double integrator1 = 0.0;
-    double integrator2 = 0.0;
-    double integrator3 = 0.0;
-    double c1 = 1.0 / 4.0;
-    double c2 = 1.0 / 3.0;
-    double c3 = 1.0 / 8.0;
+    audio state = 0.0;
+    audio integrator1 = 0.0;
+    audio integrator2 = 0.0;
+    audio integrator3 = 0.0;
+    audio c1 = 1.0 / 4.0;
+    audio c2 = 1.0 / 3.0;
+    audio c3 = 1.0 / 8.0;
     
     for (size_t i = 0; i < in->vec_len; i++) {
         integrator1 += in->vec_space[in_vec_id][i] * c1 - state * c1;
