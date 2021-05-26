@@ -16,10 +16,10 @@ int main(void) {
 
     kad_node_t* t;
     kann_t* ann;
-    size_t inputs = 1024;
+    size_t inputs = 4096;
     size_t outputs = 1;
-    size_t num_layers = 4;
-    size_t neurons = 16;
+    size_t num_layers = 16;
+    size_t neurons = 64;
     size_t SR = 192000;
 
     /* Create the neural network */
@@ -57,7 +57,7 @@ int main(void) {
     csv = fopen(fname, "w+");
 
     /* Test the net */
-    size_t testsize = 20;
+    size_t testsize = 100;
     x = malloc(sizeof(Sig));
     y = malloc(sizeof(Sig));
     sig_alloc(x, testsize, inputs, SR);
