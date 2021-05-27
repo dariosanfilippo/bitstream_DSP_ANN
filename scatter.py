@@ -41,7 +41,6 @@ for filename in glob.glob('*.csv'):
     plt.xscale('log')
     
     plt.title("Frequency estimation")
-#    plt.legend()
 
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
