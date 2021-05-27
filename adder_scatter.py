@@ -13,11 +13,12 @@ import scipy as sp
 import pandas as pd
 import matplotlib.pyplot as plt
 
+sr = int(sys.argv[1])
+
 for filename in glob.glob('*.csv'):
 
-    freq = []
     error = []
-    tmp = []
+    temp = []
     
     name = []
     name = filename
@@ -29,18 +30,17 @@ for filename in glob.glob('*.csv'):
     l = len(data)
     
     for i in range(l):
-        freq = np.append(freq, tmp[i][0])
-        error = np.append(error, tmp[i][1])
+        error = np.append(error, tmp[i][0])
     
-    plt.xlabel('Frequency (Hz)')
-    plt.ylabel('Error (target-ANN ratio)')
+    avg = np.mean(error)
     
-    plt.axhline(y = 1,linewidth = 1, color = 'r', label = "Best fit")
-    plt.scatter(freq, error, linewidth = .5, color = 'black', label = "ANN output")
+    plt.xlabel('Test run')
+    plt.ylabel('Error rate')
     
-    plt.xscale('log')
+    plt.axhline(y = avg,linewidth = 1, color = 'b', label = "Average error")
+    plt.plot(error, linewidth = .5, color = 'black', marker = ".", label = "Error rate")
     
-    plt.title("Frequency estimation")
+    plt.title("Adder operator")
 
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
@@ -49,3 +49,4 @@ for filename in glob.glob('*.csv'):
     plt.grid(True)
     
     plt.savefig(name)
+    plt.show()
