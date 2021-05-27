@@ -8,9 +8,9 @@ void freq_est_data(Sig* in, Sig* out) {
     audio phase;
 
     for (size_t i = 0; i < in->space_dim; i++) {
-        freq = (random() / (audio) RAND_MAX) * 5000.0;
-        amp = (random() / (audio) RAND_MAX) * .5;
-        phase = (random() / (audio) RAND_MAX) * TWOPI;
+        freq = frand() * 5000.0;
+        amp = frand() * .5;
+        phase = frand() * TWOPI;
         out->vec_space[i][0] = freq;
         sine(in->sr, amp, freq, phase, in, i);
         dsm3(in, in, i, i);
@@ -25,9 +25,9 @@ void amp_est_data(Sig* in, Sig* out) {
     audio phase;
 
     for (size_t i = 0; i < in->space_dim; i++) {
-        freq = (random() / (audio) RAND_MAX) * 5000.0;
-        amp = (random() / (audio) RAND_MAX) * .5;
-        phase = (random() / (audio) RAND_MAX) * TWOPI;
+        freq = frand() * 5000.0;
+        amp = frand() * .5;
+        phase = frand() * TWOPI;
         out->vec_space[i][0] = amp;
         sine(in->sr, amp, freq, phase, in, i);
         dsm3(in, in, i, i);
@@ -49,12 +49,12 @@ void adder_data(Sig* in, Sig* out) {
     sig_alloc(in1, in->space_dim, in->vec_len / 2, in->sr);
 
     for (size_t i = 0; i < in->space_dim; i++) {
-        freq0 = (random() / (audio) RAND_MAX) * 5000.0;
-        freq1 = (random() / (audio) RAND_MAX) * 5000.0;
-        amp0 = (random() / (audio) RAND_MAX) * .25;
-        amp1 = (random() / (audio) RAND_MAX) * .25;
-        phase0 = (random() / (audio) RAND_MAX) * TWOPI;
-        phase1 = (random() / (audio) RAND_MAX) * TWOPI;
+        freq0 = frand() * 5000.0;
+        freq1 = frand() * 5000.0;
+        amp0 = frand() * .25;
+        amp1 = frand() * .25;
+        phase0 = frand() * TWOPI;
+        phase1 = frand() * TWOPI;
         sine(in0->sr, amp0, freq0, phase0, in0, i);
         sine(in1->sr, amp1, freq1, phase1, in1, i);
         for (size_t j = 0; j < out->vec_len; j++) {
@@ -88,12 +88,12 @@ void mul_data(Sig* in, Sig* out) {
     sig_alloc(in1, in->space_dim, in->vec_len / 2, in->sr);
 
     for (size_t i = 0; i < in->space_dim; i++) {
-        freq0 = (random() / (audio) RAND_MAX) * 5000.0;
-        freq1 = (random() / (audio) RAND_MAX) * 5000.0;
-        amp0 = (random() / (audio) RAND_MAX) * .5;
-        amp1 = (random() / (audio) RAND_MAX) * .5;
-        phase0 = (random() / (audio) RAND_MAX) * TWOPI;
-        phase1 = (random() / (audio) RAND_MAX) * TWOPI;
+        freq0 = frand() * 5000.0;
+        freq1 = frand() * 5000.0;
+        amp0 = frand() * .5;
+        amp1 = frand() * .5;
+        phase0 = frand() * TWOPI;
+        phase1 = frand() * TWOPI;
         sine(in0->sr, amp0, freq0, phase0, in0, i);
         sine(in1->sr, amp1, freq1, phase1, in1, i);
         for (size_t j = 0; j < out->vec_len; j++) {

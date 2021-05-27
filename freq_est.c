@@ -4,7 +4,9 @@
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
+#include <time.h>
 #include "signals.c"
+#include "random.c"
 #include "osc.c"
 #include "dsm.c"
 #include "bitmath.c"
@@ -14,19 +16,21 @@
 
 int main(void) {
 
+    srand(time(0));
+
     kad_node_t* t;
     kann_t* ann;
-    size_t inputs = 4096;
+    size_t inputs = 2048;
     size_t outputs = 1;
-    size_t num_layers = 16;
-    size_t neurons = 64;
+    size_t num_layers = 2;
+    size_t neurons = 16;
     size_t SR = 192000;
 
     /* Create the neural network */
     t = kann_layer_input(inputs);
     for (size_t i = 0; i < num_layers; i++) {
         t = kann_layer_dense(t, neurons);
-        t = kad_relu(t);
+        t = kad_tanh(t);
     }
     t = kann_layer_cost(t, outputs, KANN_C_MSE);
     ann = kann_new(t, 0);
