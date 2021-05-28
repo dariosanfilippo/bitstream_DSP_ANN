@@ -20,9 +20,9 @@ int main(void) {
 
     kad_node_t* t;
     kann_t* ann;
-    size_t inputs = 64;
+    size_t inputs = 256;
     size_t outputs = inputs / 2;
-    size_t num_layers = 1;
+    size_t num_layers = 2;
     size_t neurons = outputs;
     size_t SR = 192000;
 
