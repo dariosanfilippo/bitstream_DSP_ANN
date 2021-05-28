@@ -71,13 +71,3 @@ void sig_print_space(Sig* sig) {
         }
     }
 }
-
-/* Get the dimension of a space */
-size_t sig_getdim(Sig* sig) {
-    return sig->space_dim;
-}
-
-/* Get the length of the vectors in a space */
-size_t sig_getlen(Sig* sig) {
-    return sig->vec_len;
-}

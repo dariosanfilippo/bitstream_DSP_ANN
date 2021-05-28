@@ -119,3 +119,20 @@ void binarymultiplier(Sig* in0, Sig* in1, Sig* out, size_t in_vec_id0,
     sig_free(sum);
 }
 
+void bi2uni(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
+    assert(in->vec_len == out->vec_len);
+
+    for (size_t i = 0; i < in->vec_len; i++) {
+        out->vec_space[out_vec_id][i] = 
+            in->vec_space[in_vec_id][i] > 0 ? 1.0 : 0.0;
+    }
+}
+
+void uni2bi(Sig* in, Sig* out, size_t in_vec_id, size_t out_vec_id) {
+    assert(in->vec_len == out->vec_len);
+
+    for (size_t i = 0; i < in->vec_len; i++) {
+        out->vec_space[out_vec_id][i] = 
+            in->vec_space[in_vec_id][i] > 0.5 ? 1.0 : -1.0;
+    }
+}
