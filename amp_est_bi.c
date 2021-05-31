@@ -1,3 +1,14 @@
+/*******************************************************************************
+ *
+ *      This file is used to train and test bipolar networks for the estimation
+ *      of the peak amplitude in DSM sinusoids with different frequency, 
+ *      amplitude, and phase values. These networks, in particular, 
+ *      are used with the tanh and softmax activation functions.
+ *
+ *      Copyright (c) Dario Sanfilippo 2021
+ *
+ ******************************************************************************/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>

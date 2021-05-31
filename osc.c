@@ -1,3 +1,11 @@
+/*******************************************************************************
+ *
+ *      Sinusoidal oscillator.
+ *
+ *      Copyright (c) Dario Sanfilippo 2021.
+ *
+*******************************************************************************/
+
 #include "osc.h"
 
 void sine(size_t sr, audio amp, audio freq, audio phase, Sig* out, 

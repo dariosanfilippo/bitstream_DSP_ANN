@@ -1,3 +1,12 @@
+/*******************************************************************************
+ *
+ *      This module implements an infrastructure to operate with signals
+ *      based on a vector space representation.
+ *
+ *      Copyright (c) Dario Sanfilippo 2021.
+ *
+ ******************************************************************************/
+
 #ifndef SIGNALS
 #define SIGNALS
 

@@ -1,3 +1,15 @@
+/*******************************************************************************
+ *
+ *      This module contains delta-sigma arithmetic operators.
+ *
+ *      Reference:
+ *          Chiu-wa Ng (2009) -- Bit-stream signal processing on FPGA.
+ *          http://hub.hku.hk/handle/10722/54513
+ *
+ *      Copyright (c) Dario Sanfilippo 2021.
+ *
+*******************************************************************************/
+
 #ifndef BITMATH
 #define BITMATH
 

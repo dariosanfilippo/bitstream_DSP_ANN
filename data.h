@@ -1,3 +1,13 @@
+/*******************************************************************************
+ *
+ *      This module contains functions for the generation of training and
+ *      test data for frequency and amplitude estimation, and sum and
+ *      multiplication operations.
+ *
+ *      Copyright (c) Dario Sanfilippo 2021.
+ *
+*******************************************************************************/
+
 #ifndef DATA
 #define DATA
 

@@ -1,3 +1,5 @@
+/* Unit-bounded floatng-point random numbers. */
+
 #include "random.h"
 
 audio frand(void) {
