@@ -8,8 +8,8 @@ void freq_est_data(Sig* in, Sig* out) {
     audio phase;
 
     for (size_t i = 0; i < in->space_dim; i++) {
-        freq = frand() * 5000.0;
-        amp = frand() * .5;
+        freq = frand() * 20000.0;
+        amp = frand() * .5 + .25;
         phase = frand() * TWOPI;
         out->vec_space[i][0] = freq;
         sine(in->sr, amp, freq, phase, in, i);
@@ -25,8 +25,8 @@ void amp_est_data(Sig* in, Sig* out) {
     audio phase;
 
     for (size_t i = 0; i < in->space_dim; i++) {
-        freq = frand() * 5000.0;
-        amp = frand() * .5;
+        freq = frand() * 20000.0;
+        amp = frand() * .5 + .25;
         phase = frand() * TWOPI;
         out->vec_space[i][0] = amp;
         sine(in->sr, amp, freq, phase, in, i);

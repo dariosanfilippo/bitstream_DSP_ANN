@@ -30,7 +30,7 @@ int main(void) {
     t = kann_layer_input(inputs);
     for (size_t i = 0; i < num_layers; i++) {
         t = kann_layer_dense(t, neurons);
-        t = kad_relu(t);
+        t = kad_sigm(t);
     }
     t = kann_layer_cost(t, outputs, KANN_C_MSE);
     ann = kann_new(t, 0);
