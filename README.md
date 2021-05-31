@@ -1,5 +1,5 @@
-# Bitstream DSP ANN
+# Delta-sigma DSP with artificial neural networks based on the KANN library
 
-Note that this is currently a work in progress.
+https://github.com/attractivechaos/kann
 
-This repository provides programs for the generation of training data for the Kann neural network library to be deployed in bitstream signal analysis and processing.
+This repository provides programs for the generation of training data for arithmetic and analysis processing of delta-sigma streams based on the KANN neural network library. The project was funded by the City of Vienna Science Grants programme.
